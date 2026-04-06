@@ -264,4 +264,50 @@ export default function PostTracker() {
 
       <br />
 
-      
+      {/* TABLE */}
+      {filtered.length === 0 ? (
+        <p>No posts logged yet.</p>
+      ) : (
+        <table border="1" cellPadding="6" style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
+          <thead>
+            <tr style={{ background: "#eee" }}>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Platform</th>
+              <th>Series</th>
+              <th>Type</th>
+              <th>Likes</th>
+              <th>Comments</th>
+              <th>Shares</th>
+              <th>Reach</th>
+              <th>Impressions</th>
+              <th>Notes</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((post) => (
+              <tr key={post.id}>
+                <td>{post.date}</td>
+                <td>{post.time}</td>
+                <td>{post.platform}</td>
+                <td>{post.series}</td>
+                <td>{post.content_type}</td>
+                <td>{post.likes}</td>
+                <td>{post.comments}</td>
+                <td>{post.shares}</td>
+                <td>{post.reach}</td>
+                <td>{post.impressions}</td>
+                <td style={{ maxWidth: "150px", wordBreak: "break-word" }}>{post.notes}</td>
+                <td>
+                  <button onClick={() => handleEdit(post)}>Edit</button>{" "}
+                  <button onClick={() => handleDelete(post.id)}>Del</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
